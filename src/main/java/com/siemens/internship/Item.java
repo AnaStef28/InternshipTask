@@ -5,10 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
 
 @Entity
 @Getter
@@ -19,10 +18,23 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    //Added more validation
+    @NotBlank
     private String name;
+    @NotBlank
     private String description;
+    @NotBlank
     private String status;
 
-    // Add email regex validation
+    // Added email regex validation
+    @Email(message = "Email is not valid.")
+    @NotBlank
     private String email;
+
+    //Added toString for testing/debugging purposes
+    public String toString() {
+        return name + " " + description + " " + status + " " + email;
+    }
+
 }
