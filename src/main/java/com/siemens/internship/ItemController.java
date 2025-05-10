@@ -45,7 +45,7 @@ public class ItemController {
         if (item.isPresent()) {
             return new ResponseEntity<>(item.get(), HttpStatus.OK);
         }
-        return new ResponseEntity<>("No such item exists", HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("No such item exists.", HttpStatus.NOT_FOUND);
 
 
     }
@@ -60,7 +60,7 @@ public class ItemController {
             //before: HttpStatus was "CREATED"
             return new ResponseEntity<>(itemService.save(item), HttpStatus.OK);
         }
-        return new ResponseEntity<>("No such item exists", HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("No such item exists.", HttpStatus.NOT_FOUND);
 
     }
 
@@ -74,7 +74,7 @@ public class ItemController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         else {
-            return new ResponseEntity<>("No such items exist.", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("No such item exist.", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -85,7 +85,7 @@ public class ItemController {
         return itemService.processItemsAsync().thenApply(items -> {
             return new ResponseEntity<>(items, HttpStatus.OK);
         }).exceptionally(e -> {
-            System.out.println("Error processing items asynchronously "+e.getMessage());
+            System.out.println("Error processing items asynchronously " + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         });
     }

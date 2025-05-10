@@ -1,5 +1,6 @@
 package com.siemens.internship;
 
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Async;
@@ -18,9 +19,10 @@ public class ItemService {
     private final ItemRepository itemRepository;
     private final AtomicInteger processedCount = new AtomicInteger(0);
 
+    @Setter
     @Autowired
     @Qualifier("myExecutor")
-    private Executor executor;
+    public Executor executor;
 
 
     public ItemService(ItemRepository itemRepository) {
